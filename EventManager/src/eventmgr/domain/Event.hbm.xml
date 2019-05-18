@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="eventmgr.domain">
+<class name="Event" table="EVENTS" lazy="true">
+	<id name="Id">
+		<generator class="native"/>
+	</id>
+	
+	<property name="name"></property>
+	<property name="startDate" column="start_date"
+			type="timestamp"/>
+	<many-to-one name="location" column="location_id"
+			cascade="save-update"/>
+	
+	<set name="speakers" cascade="save-update">
+		<key column="event_id"/>
+		<one-to-many class="Speaker"/>
+	</set>
+	
+
+</class>
+
+
+
+</hibernate-mapping>
